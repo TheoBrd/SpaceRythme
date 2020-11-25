@@ -12,24 +12,25 @@ enum SatelliteType
 
 public class SatelliteBehaviour : MonoBehaviour
 {
+    public GameObject Ship;
+    public SpacePlane mScript;
     private SatelliteType side;
 
     // Start is called before the first frame update
     void Start()
     {
-        SpacePlane mScript = transform.parent.gameObject.transform.parent.GetComponent<SpacePlane>();
-        Vector3 parentPosition = transform.parent.position;
+        Vector3 ShipPosition = Ship.transform.position;
 
         print(mScript.GetDistance());
         if (name == "Satellite1")
         {
-            transform.position = parentPosition + new Vector3(mScript.GetDistance(), 0, 0);
+            transform.position = ShipPosition + new Vector3(mScript.GetDistance(), 0, 0);
             GetComponent<Renderer>().material.color = Color.red;
             side = SatelliteType.red;
         }
         else if (name == "Satellite2")
         {
-            transform.position = parentPosition - new Vector3(mScript.GetDistance(), 0, 0);
+            transform.position = ShipPosition - new Vector3(mScript.GetDistance(), 0, 0);
             GetComponent<Renderer>().material.color = Color.blue;
             side = SatelliteType.blue;
         }
