@@ -7,20 +7,15 @@ public class MovementShip : MonoBehaviour
 {
     // Start is called before the first frame update
 
-    void Start()
-    {
-        GetComponent<Renderer>().material.color = Color.green;
-
-    }
-
+    public GameObject satel1;
+    public GameObject satel2;
+    public SpacePlane planeScipt;
 
     // Update is called once per frame
     void Update()
     {
         Vector3 nextSatellitePosition = new Vector3();
-        SpacePlane planeScipt = transform.parent.GetComponent<SpacePlane>();
-        GameObject satel1 = transform.GetChild(0).gameObject;
-        GameObject satel2 = transform.GetChild(1).gameObject;
+
 
         if (Input.GetKeyDown(KeyCode.Q))
         {
