@@ -7,6 +7,7 @@ public class SpacePlane : MonoBehaviour
     // Start is called before the first frame update
 
     private List<Vector3> m_planeCorners;
+    public List<Vector3> m_collumsPosition;
     private float m_distance = 3;
     public int m_nbCol;
 
@@ -15,6 +16,22 @@ public class SpacePlane : MonoBehaviour
         m_planeCorners = new List<Vector3>();
         GetVertices();
         m_distance = Vector3.Distance(m_planeCorners[2], m_planeCorners[3]) / (float)m_nbCol;
+
+        for(int i = 0; i< m_nbCol; ++i)
+        {
+            Vector3 temp;
+            if(i == 0)
+            {
+                temp = m_planeCorners[3];
+                temp.x += m_distance / 2;
+            }
+            else
+            {
+                temp = m_collumsPosition[i - 1];
+                temp.x += m_distance;
+            }
+            m_collumsPosition.Add(temp);
+        }
     }
 
     void Start()
@@ -40,7 +57,14 @@ public class SpacePlane : MonoBehaviour
     }
 
 
-    public List<Vector3> PlaneCorners { get => m_planeCorners; }
+    public List<Vector3> PlaneCorners 
+    { 
+        get => m_planeCorners; 
+    }
+    public List<Vector3> CollumsPosition
+    { 
+        get => m_collumsPosition; 
+    }
     public Vector3 GetCorners(int index)
     {
 
@@ -48,7 +72,11 @@ public class SpacePlane : MonoBehaviour
     }
     public float GetDistance() 
     { 
-        return m_distance; 
+        return m_distance;
+    }
+    public int GetNbCol()
+    {
+        return m_nbCol;
     }
 }
 

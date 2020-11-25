@@ -11,6 +11,14 @@ public class MovementShip : MonoBehaviour
     public GameObject satel2;
     public SpacePlane planeScipt;
 
+    private void Start()
+    {
+        int nbCol = planeScipt.GetNbCol();
+        Vector3 position = this.transform.position;
+        position.x = planeScipt.CollumsPosition[nbCol / 2 + 1].x;
+        this.transform.position = position;
+    }
+
     // Update is called once per frame
     void Update()
     {

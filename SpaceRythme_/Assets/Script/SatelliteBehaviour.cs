@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-enum SatelliteType
+public enum SatelliteType
 {
     red,
     blue
@@ -56,6 +56,28 @@ public class SatelliteBehaviour : MonoBehaviour
         }
     }
 
+    public void OnTriggerEnter(Collider collision)
+    {
+        if(collision.gameObject.tag == "Note")
+        {
+            NoteBehavior note = collision.gameObject.GetComponent<NoteBehavior>();
+            if (side == SatelliteType.blue )
+            {                
+                if(note.planetType == PlanetType.blue || note.planetType == PlanetType.white)
+                {
+                    Destroy(collision.gameObject);
+                }
+            }
+            else
+            {
+                if (note.planetType == PlanetType.red || note.planetType == PlanetType.white)
+                {
+                    Destroy(collision.gameObject);
+                }
+            }
+        }
+        
+    }
 }
 
 
