@@ -4,15 +4,15 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-enum ShipSide
+enum SatelliteType
 {
-    right,
-    left
+    red,
+    blue
 };
 
 public class SatelliteBehaviour : MonoBehaviour
 {
-    private ShipSide side;
+    private SatelliteType side;
 
     // Start is called before the first frame update
     void Start()
@@ -25,13 +25,13 @@ public class SatelliteBehaviour : MonoBehaviour
         {
             transform.position = parentPosition + new Vector3(mScript.GetDistance(), 0, 0);
             GetComponent<Renderer>().material.color = Color.red;
-            side = ShipSide.right;
+            side = SatelliteType.red;
         }
         else if (name == "Satellite2")
         {
             transform.position = parentPosition - new Vector3(mScript.GetDistance(), 0, 0);
             GetComponent<Renderer>().material.color = Color.blue;
-            side = ShipSide.left;
+            side = SatelliteType.blue;
         }
 
     }
@@ -45,13 +45,13 @@ public class SatelliteBehaviour : MonoBehaviour
 
     public void ReverseShipSide()
     {
-        if(side == ShipSide.left)
+        if(side == SatelliteType.blue)
         {
-            side = ShipSide.right;
+            side = SatelliteType.red;
         }
         else
         {
-            side = ShipSide.left;
+            side = SatelliteType.blue;
         }
     }
 
